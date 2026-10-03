@@ -32,6 +32,8 @@
         }
 
         .calculator {
+            position: relative;
+z-index: 20;
             width: 340px;
             padding: 28px;
 
@@ -146,8 +148,11 @@ button:active {
 .floating-hearts {
     position: fixed;
     inset: 0;
+
     pointer-events: none;
     overflow: hidden;
+
+    z-index: 10;
 }
 
 .floating-hearts span {
