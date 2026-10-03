@@ -148,9 +148,10 @@ button:active {
 .floating-hearts {
     position: fixed;
     inset: 0;
+    width: 100%;
+    height: 100%;
 
     pointer-events: none;
-    overflow: hidden;
 
     z-index: 10;
 }
@@ -158,65 +159,63 @@ button:active {
 .floating-hearts span {
     position: absolute;
 
-    font-size: 24px;
+    display: block;
 
-    opacity: 0.75;
+    font-size: 32px;
+    font-weight: bold;
+
+    opacity: 1;
 
     color: #f3b9d4;
 
     text-shadow:
-        0 3px 8px rgba(190, 140, 175, 0.25);
+        0 3px 8px rgba(190, 140, 175, 0.3);
 
     animation: floatHeart 5s ease-in-out infinite;
 }
 
-.floating-hearts span:nth-child(2),
-.floating-hearts span:nth-child(4),
-.floating-hearts span:nth-child(6) {
-    color: #dcd0ff;
-}
-
-.floating-hearts span:nth-child(3),
-.floating-hearts span:nth-child(5) {
-    color: #bfe8f7;
-}
-
 .floating-hearts span:nth-child(1) {
-    left: 10%;
+    left: 8%;
     top: 20%;
 }
 
 .floating-hearts span:nth-child(2) {
     left: 85%;
-    top: 15%;
+    top: 18%;
+    color: #dcd0ff;
     animation-delay: 1s;
 }
 
 .floating-hearts span:nth-child(3) {
-    left: 15%;
+    left: 10%;
     top: 75%;
+    color: #bfe8f7;
     animation-delay: 2s;
 }
 
 .floating-hearts span:nth-child(4) {
     left: 88%;
-    top: 70%;
+    top: 72%;
+    color: #f3b9d4;
     animation-delay: 3s;
 }
 
 .floating-hearts span:nth-child(5) {
     left: 25%;
-    top: 10%;
+    top: 8%;
+    color: #dcd0ff;
     animation-delay: 1.5s;
 }
 
 .floating-hearts span:nth-child(6) {
     left: 75%;
-    top: 85%;
+    top: 88%;
+    color: #bfe8f7;
     animation-delay: 2.5s;
 }
 
 @keyframes floatHeart {
+
     0%, 100% {
         transform: translateY(0);
     }
@@ -224,7 +223,6 @@ button:active {
     50% {
         transform: translateY(-15px);
     }
-}
         .heart {
             width: 62px;
             height: 62px;
