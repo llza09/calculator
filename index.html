@@ -143,7 +143,67 @@ button:active {
             background: #f3b9d4;
             color: white;
         }
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
 
+.floating-hearts span {
+    position: absolute;
+
+    font-size: 24px;
+
+    opacity: 0.65;
+
+    animation: floatHeart 5s ease-in-out infinite;
+}
+
+.floating-hearts span:nth-child(1) {
+    left: 10%;
+    top: 20%;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 85%;
+    top: 15%;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 15%;
+    top: 75%;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 88%;
+    top: 70%;
+    animation-delay: 3s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 25%;
+    top: 10%;
+    animation-delay: 1.5s;
+}
+
+.floating-hearts span:nth-child(6) {
+    left: 75%;
+    top: 85%;
+    animation-delay: 2.5s;
+}
+
+@keyframes floatHeart {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
         .heart {
             width: 62px;
             height: 62px;
@@ -183,6 +243,15 @@ button:active {
 </head>
 
 <body>
+
+    <div class="floating-hearts">
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+    </div>
 
     <div class="calculator">
 
