@@ -1,0 +1,12 @@
+{
+  "name": "Calculator ♡",
+  "short_name": "Calc",
+  "description": "A cute pastel calculator",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffe6f2",
+  "theme_color": "#f3b9d4",
+  "orientation": "portrait",
+  "icons": []
+}
