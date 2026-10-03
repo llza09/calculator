@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="theme-color" content="#f3b9d4">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="manifest" href="manifest.json">
+
     <title>Soft Calculator</title>
 
     <style>
@@ -437,6 +443,120 @@
         let operator = "";
 
 
+        /* Calculator function */
+
+        function calculate() {
+
+            if (
+                previousInput === "" ||
+                currentInput === ""
+            ) {
+                return;
+            }
+
+
+            const firstNumber =
+                Number(previousInput);
+
+            const secondNumber =
+                Number(currentInput);
+
+
+            let result;
+
+
+            if (operator === "+") {
+
+                result =
+                    firstNumber +
+                    secondNumber;
+
+            }
+
+
+            if (operator === "−") {
+
+                result =
+                    firstNumber -
+                    secondNumber;
+
+            }
+
+
+            if (operator === "×") {
+
+                result =
+                    firstNumber *
+                    secondNumber;
+
+            }
+
+
+            if (operator === "÷") {
+
+                result =
+                    secondNumber === 0
+                    ? "Error"
+                    : firstNumber /
+                      secondNumber;
+
+            }
+
+
+            display.textContent =
+                result;
+
+
+            /* Remove empty message */
+
+            const emptyMessage =
+                document.querySelector(
+                    ".empty-history"
+                );
+
+            if (emptyMessage) {
+                emptyMessage.remove();
+            }
+
+
+            /* Add calculation to history */
+
+            const historyItem =
+                document.createElement("div");
+
+            historyItem.textContent =
+                `${firstNumber} ${operator} ${secondNumber} = ${result}`;
+
+            historyList.appendChild(
+                historyItem
+            );
+
+
+            currentInput =
+                String(result);
+
+            previousInput = "";
+
+            operator = "";
+
+        }
+
+
+        /* Clear */
+
+        function clearCalculator() {
+
+            currentInput = "";
+            previousInput = "";
+            operator = "";
+
+            display.textContent = "0";
+
+        }
+
+
+        /* Button controls */
+
         buttons.forEach(button => {
 
             button.addEventListener("click", () => {
@@ -445,21 +565,14 @@
                     button.textContent;
 
 
-                /* Clear */
-
                 if (value === "♥") {
 
-                    currentInput = "";
-                    previousInput = "";
-                    operator = "";
-
-                    display.textContent = "0";
+                    clearCalculator();
 
                     return;
+
                 }
 
-
-                /* Delete */
 
                 if (value === "⌫") {
 
@@ -470,12 +583,14 @@
                         currentInput || "0";
 
                     return;
+
                 }
 
 
-                /* Numbers and decimal */
-
-                if (!isNaN(value) || value === ".") {
+                if (
+                    !isNaN(value) ||
+                    value === "."
+                ) {
 
                     currentInput += value;
 
@@ -483,10 +598,9 @@
                         currentInput;
 
                     return;
+
                 }
 
-
-                /* Percentage */
 
                 if (value === "%") {
 
@@ -499,10 +613,9 @@
                         currentInput;
 
                     return;
+
                 }
 
-
-                /* Operators */
 
                 if (
                     ["+", "−", "×", "÷"]
@@ -517,110 +630,163 @@
                     operator = value;
 
                     return;
+
                 }
 
 
-                /* Equals */
-
                 if (value === "=") {
 
-                    if (
-                        previousInput === "" ||
-                        currentInput === ""
-                    ) {
-                        return;
-                    }
-
-
-                    const firstNumber =
-                        Number(previousInput);
-
-                    const secondNumber =
-                        Number(currentInput);
-
-
-                    let result;
-
-
-                    if (operator === "+") {
-
-                        result =
-                            firstNumber +
-                            secondNumber;
-
-                    }
-
-
-                    if (operator === "−") {
-
-                        result =
-                            firstNumber -
-                            secondNumber;
-
-                    }
-
-
-                    if (operator === "×") {
-
-                        result =
-                            firstNumber *
-                            secondNumber;
-
-                    }
-
-
-                    if (operator === "÷") {
-
-                        result =
-                            secondNumber === 0
-                            ? "Error"
-                            : firstNumber /
-                              secondNumber;
-
-                    }
-
-
-                    display.textContent =
-                        result;
-
-
-                    /* Remove empty message */
-
-                    const emptyMessage =
-                        document.querySelector(
-                            ".empty-history"
-                        );
-
-                    if (emptyMessage) {
-                        emptyMessage.remove();
-                    }
-
-
-                    /* Add calculation */
-
-                    const historyItem =
-                        document.createElement("div");
-
-                    historyItem.textContent =
-                        `${firstNumber} ${operator} ${secondNumber} = ${result}`;
-
-                    historyList.appendChild(
-                        historyItem
-                    );
-
-
-                    currentInput =
-                        String(result);
-
-                    previousInput = "";
-
-                    operator = "";
+                    calculate();
 
                 }
 
             });
 
         });
+
+
+        /* Keyboard support */
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                const key = event.key;
+
+
+                if (
+                    key >= "0" &&
+                    key <= "9"
+                ) {
+
+                    currentInput += key;
+
+                    display.textContent =
+                        currentInput;
+
+                }
+
+
+                else if (key === ".") {
+
+                    currentInput += ".";
+
+                    display.textContent =
+                        currentInput;
+
+                }
+
+
+                else if (key === "+") {
+
+                    previousInput =
+                        currentInput;
+
+                    currentInput = "";
+
+                    operator = "+";
+
+                }
+
+
+                else if (key === "-") {
+
+                    previousInput =
+                        currentInput;
+
+                    currentInput = "";
+
+                    operator = "−";
+
+                }
+
+
+                else if (key === "*") {
+
+                    previousInput =
+                        currentInput;
+
+                    currentInput = "";
+
+                    operator = "×";
+
+                }
+
+
+                else if (key === "/") {
+
+                    event.preventDefault();
+
+                    previousInput =
+                        currentInput;
+
+                    currentInput = "";
+
+                    operator = "÷";
+
+                }
+
+
+                else if (key === "%") {
+
+                    currentInput =
+                        String(
+                            Number(currentInput) / 100
+                        );
+
+                    display.textContent =
+                        currentInput;
+
+                }
+
+
+                else if (
+                    key === "Enter" ||
+                    key === "="
+                ) {
+
+                    calculate();
+
+                }
+
+
+                else if (key === "Backspace") {
+
+                    currentInput =
+                        currentInput.slice(0, -1);
+
+                    display.textContent =
+                        currentInput || "0";
+
+                }
+
+
+                else if (key === "Escape") {
+
+                    clearCalculator();
+
+                }
+
+            }
+        );
+
+
+        /* Make the website installable */
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener(
+                "load",
+                () => {
+
+                    navigator.serviceWorker.register(
+                        "sw.js"
+                    );
+
+                }
+            );
+
+        }
 
     </script>
 
