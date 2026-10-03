@@ -193,7 +193,99 @@
 
     </div>
     <script>
-const display = document.querySelector(".display");
+
+    const display = document.querySelector(".display");
+    const buttons = document.querySelectorAll("button");
+
+    let currentInput = "";
+    let previousInput = "";
+    let operator = "";
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const value = button.textContent;
+
+            // AC button
+            if (value === "♥") {
+                currentInput = "";
+                previousInput = "";
+                operator = "";
+                display.textContent = "0";
+                return;
+            }
+
+            // Delete button
+            if (value === "⌫") {
+                currentInput = currentInput.slice(0, -1);
+                display.textContent = currentInput || "0";
+                return;
+            }
+
+            // Number buttons
+            if (!isNaN(value) || value === ".") {
+                currentInput += value;
+                display.textContent = currentInput;
+                return;
+            }
+
+            // Percentage
+            if (value === "%") {
+                currentInput = String(Number(currentInput) / 100);
+                display.textContent = currentInput;
+                return;
+            }
+
+            // Operators
+            if (["+", "−", "×", "÷"].includes(value)) {
+                previousInput = currentInput;
+                currentInput = "";
+                operator = value;
+                return;
+            }
+
+            // Equals
+            if (value === "=") {
+
+                if (previousInput === "" || currentInput === "") {
+                    return;
+                }
+
+                const firstNumber = Number(previousInput);
+                const secondNumber = Number(currentInput);
+
+                let result;
+
+                if (operator === "+") {
+                    result = firstNumber + secondNumber;
+                }
+
+                if (operator === "−") {
+                    result = firstNumber - secondNumber;
+                }
+
+                if (operator === "×") {
+                    result = firstNumber * secondNumber;
+                }
+
+                if (operator === "÷") {
+                    result = secondNumber === 0
+                        ? "Error"
+                        : firstNumber / secondNumber;
+                }
+
+                display.textContent = result;
+
+                currentInput = String(result);
+                previousInput = "";
+                operator = "";
+            }
+
+        });
+
+    });
+
 </script>
 </body>
 </html>
