@@ -109,13 +109,17 @@
             transition: 0.15s ease;
         }
 
-        button:hover {
-            transform: translateY(-3px);
-        }
+       button:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.04);
+}
 
-        button:active {
-            transform: scale(0.92);
-        }
+button:active {
+    transform: scale(0.88);
+    box-shadow:
+        0 2px 5px rgba(190, 140, 175, 0.2),
+        inset 0 3px 6px rgba(190, 140, 175, 0.15);
+}
 
         button:nth-child(4n) {
             background: #dcd0ff;
