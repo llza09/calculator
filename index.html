@@ -3,158 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Soft Calculator</title>
+
     <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
 
-    body {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(
-            135deg,
-            #ffe6f2,
-            #eee5ff,
-            #e3f5ff
-        );
-        font-family: Arial, sans-serif;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .calculator {
-        width: 340px;
-        padding: 28px;
-        border-radius: 40px;
-        background: #fff7fb;
-        border: 4px solid #f4c6df;
-        outline: 3px solid #eadcff;
-        outline-offset: 5px;
-        box-shadow:
-            0 20px 40px rgba(190, 150, 190, 0.25),
-            inset 0 0 20px rgba(255, 255, 255, 0.8);
-        border: 3px solid #f8d8e8;
-    }
+        body {
+            min-height: 100vh;
 
-    .display {
-    height: 90px;
-    margin-bottom: 25px;
-    padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+            background: linear-gradient(
+                135deg,
+                #ffe6f2,
+                #eee5ff,
+                #e3f5ff
+            );
 
-    border-radius: 30px;
-    background: linear-gradient(
-        135deg,
-        #fffafd,
-        #fff0f7
-    );
+            font-family: Arial, sans-serif;
+        }
 
-    border: 3px solid #f7d8e8;
+        .calculator {
+            width: 340px;
+            padding: 28px;
 
-    color: #76556c;
-    font-size: 32px;
-    font-weight: bold;
+            border-radius: 40px;
 
-    box-shadow:
-        inset 0 3px 10px rgba(190, 150, 190, 0.12),
-        0 4px 8px rgba(190, 150, 190, 0.12);
+            background: #fff7fb;
 
-    overflow: hidden;
-}
+            border: 4px solid #f4c6df;
 
-    .buttons {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 14px;
-    }
+            outline: 3px solid #eadcff;
+            outline-offset: 5px;
 
-    button {
-    height: 62px;
-    border: none;
-    border-radius: 50%;
+            box-shadow:
+                0 20px 40px rgba(190, 150, 190, 0.25),
+                inset 0 0 20px rgba(255, 255, 255, 0.8);
+        }
 
-    background: #ffddeb;
-    color: #76556c;
+        .display {
+            height: 90px;
+            margin-bottom: 25px;
+            padding: 20px;
 
-    font-size: 19px;
-    font-weight: bold;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
 
-    cursor: pointer;
+            border-radius: 30px;
 
-    box-shadow:
-        0 6px 10px rgba(190, 140, 175, 0.2),
-        inset 0 3px 5px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(
+                135deg,
+                #fffafd,
+                #fff0f7
+            );
 
-    transition: 0.15s ease;
-}
+            border: 3px solid #f7d8e8;
 
-    button:hover {
-        transform: translateY(-3px);
-    }
+            color: #76556c;
 
-    button:active {
-        transform: scale(0.92);
-    }
+            font-size: 32px;
+            font-weight: bold;
 
-    button:nth-child(4n) {
-        background: #dcd0ff;
-        color: #66527f;
-    }
+            box-shadow:
+                inset 0 3px 10px rgba(190, 150, 190, 0.12),
+                0 4px 8px rgba(190, 150, 190, 0.12);
 
-    button:nth-child(2),
-    button:nth-child(3) {
-        background: #dff4ff;
-    }
+            overflow: hidden;
+        }
 
-    button:nth-child(1) {
-        background: #f6d5ff;
-    }
+        .buttons {
+            display: grid;
 
-    button:last-child {
-        grid-column: span 2;
-        border-radius: 35px;
-        background: #f3b9d4;
-        color: white;
-    }
-    .heart {
-        width: 62px;
-        height: 62px;
-        background: #f3b9d4;
-        color: white;
-        border-radius: 0;
+            grid-template-columns: repeat(4, 1fr);
 
-    box-shadow:
-        0 6px 10px rgba(190, 140, 175, 0.2),
-        inset 0 3px 5px rgba(255, 255, 255, 0.8);
+            gap: 14px;
+        }
 
-    filter: drop-shadow(
-        0 5px 5px rgba(190, 140, 175, 0.25)
-    );
+        button {
+            height: 62px;
 
-    clip-path: polygon(
-        50% 92%,
-        12% 55%,
-        5% 40%,
-        5% 25%,
-        12% 12%,
-        25% 7%,
-        38% 10%,
-        50% 25%,
-        62% 10%,
-        75% 7%,
-        88% 12%,
-        95% 25%,
-        95% 40%,
-        88% 55%
-    );
-}
-</style>
+            border: none;
+            border-radius: 50%;
+
+            background: #ffddeb;
+            color: #76556c;
+
+            font-size: 19px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 10px rgba(190, 140, 175, 0.2),
+                inset 0 3px 5px rgba(255, 255, 255, 0.8);
+
+            transition: 0.15s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: scale(0.92);
+        }
+
+        button:nth-child(4n) {
+            background: #dcd0ff;
+            color: #66527f;
+        }
+
+        button:nth-child(2),
+        button:nth-child(3) {
+            background: #dff4ff;
+        }
+
+        button:nth-child(1) {
+            background: #f6d5ff;
+        }
+
+        button:last-child {
+            grid-column: span 2;
+
+            border-radius: 35px;
+
+            background: #f3b9d4;
+            color: white;
+        }
+
+        .heart {
+            width: 62px;
+            height: 62px;
+
+            background: #f3b9d4;
+            color: white;
+
+            border-radius: 0;
+
+            box-shadow:
+                0 6px 10px rgba(190, 140, 175, 0.2),
+                inset 0 3px 5px rgba(255, 255, 255, 0.8);
+
+            filter: drop-shadow(
+                0 5px 5px rgba(190, 140, 175, 0.25)
+            );
+
+            clip-path: polygon(
+                50% 92%,
+                12% 55%,
+                5% 40%,
+                5% 25%,
+                12% 12%,
+                25% 7%,
+                38% 10%,
+                50% 25%,
+                62% 10%,
+                75% 7%,
+                88% 12%,
+                95% 25%,
+                95% 40%,
+                88% 55%
+            );
+        }
+
+    </style>
 </head>
 
 <body>
@@ -166,6 +187,7 @@
         </div>
 
         <div class="buttons">
+
             <button class="heart">♥</button>
             <button>⌫</button>
             <button>%</button>
@@ -189,103 +211,126 @@
             <button>0</button>
             <button>.</button>
             <button>=</button>
+
         </div>
 
     </div>
+
     <script>
 
-    const display = document.querySelector(".display");
-    const buttons = document.querySelectorAll("button");
+        const display = document.querySelector(".display");
+        const buttons = document.querySelectorAll("button");
 
-    let currentInput = "";
-    let previousInput = "";
-    let operator = "";
+        let currentInput = "";
+        let previousInput = "";
+        let operator = "";
 
-    buttons.forEach(button => {
+        buttons.forEach(button => {
 
-        button.addEventListener("click", () => {
+            button.addEventListener("click", () => {
 
-            const value = button.textContent;
+                const value = button.textContent;
 
-            // AC button
-            if (value === "♥") {
-                currentInput = "";
-                previousInput = "";
-                operator = "";
-                display.textContent = "0";
-                return;
-            }
+                // Clear
+                if (value === "♥") {
+                    currentInput = "";
+                    previousInput = "";
+                    operator = "";
 
-            // Delete button
-            if (value === "⌫") {
-                currentInput = currentInput.slice(0, -1);
-                display.textContent = currentInput || "0";
-                return;
-            }
+                    display.textContent = "0";
 
-            // Number buttons
-            if (!isNaN(value) || value === ".") {
-                currentInput += value;
-                display.textContent = currentInput;
-                return;
-            }
-
-            // Percentage
-            if (value === "%") {
-                currentInput = String(Number(currentInput) / 100);
-                display.textContent = currentInput;
-                return;
-            }
-
-            // Operators
-            if (["+", "−", "×", "÷"].includes(value)) {
-                previousInput = currentInput;
-                currentInput = "";
-                operator = value;
-                return;
-            }
-
-            // Equals
-            if (value === "=") {
-
-                if (previousInput === "" || currentInput === "") {
                     return;
                 }
 
-                const firstNumber = Number(previousInput);
-                const secondNumber = Number(currentInput);
+                // Delete
+                if (value === "⌫") {
+                    currentInput = currentInput.slice(0, -1);
 
-                let result;
+                    display.textContent = currentInput || "0";
 
-                if (operator === "+") {
-                    result = firstNumber + secondNumber;
+                    return;
                 }
 
-                if (operator === "−") {
-                    result = firstNumber - secondNumber;
+                // Numbers and decimal
+                if (!isNaN(value) || value === ".") {
+
+                    currentInput += value;
+
+                    display.textContent = currentInput;
+
+                    return;
                 }
 
-                if (operator === "×") {
-                    result = firstNumber * secondNumber;
+                // Percentage
+                if (value === "%") {
+
+                    currentInput = String(
+                        Number(currentInput) / 100
+                    );
+
+                    display.textContent = currentInput;
+
+                    return;
                 }
 
-                if (operator === "÷") {
-                    result = secondNumber === 0
-                        ? "Error"
-                        : firstNumber / secondNumber;
+                // Operators
+                if (["+", "−", "×", "÷"].includes(value)) {
+
+                    previousInput = currentInput;
+
+                    currentInput = "";
+
+                    operator = value;
+
+                    return;
                 }
 
-                display.textContent = result;
+                // Equals
+                if (value === "=") {
 
-                currentInput = String(result);
-                previousInput = "";
-                operator = "";
-            }
+                    if (
+                        previousInput === "" ||
+                        currentInput === ""
+                    ) {
+                        return;
+                    }
+
+                    const firstNumber = Number(previousInput);
+                    const secondNumber = Number(currentInput);
+
+                    let result;
+
+                    if (operator === "+") {
+                        result = firstNumber + secondNumber;
+                    }
+
+                    if (operator === "−") {
+                        result = firstNumber - secondNumber;
+                    }
+
+                    if (operator === "×") {
+                        result = firstNumber * secondNumber;
+                    }
+
+                    if (operator === "÷") {
+                        result =
+                            secondNumber === 0
+                            ? "Error"
+                            : firstNumber / secondNumber;
+                    }
+
+                    display.textContent = result;
+
+                    currentInput = String(result);
+                    previousInput = "";
+                    operator = "";
+                }
+
+            });
 
         });
 
-    });
+    </script>
 
-</script>
 </body>
 </html>
